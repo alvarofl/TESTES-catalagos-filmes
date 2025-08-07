@@ -1,7 +1,19 @@
-public class Ator extends Pessoa {
+import java.util.Date;
 
-    public Ator(String nome, int idade, String nacionalidade, String filmeParticipacao) {
-        super(nome, idade, nacionalidade, filmeParticipacao);
+public class Ator extends Pessoa {
+    private String filmeParticipacao;
+
+    public Ator(String nome, Date idade, String nacionalidade, String filmeParticipacao) {
+        super(nome, idade, nacionalidade);
+        this.filmeParticipacao = filmeParticipacao;
+    }
+
+    public String getFilmeParticipacao() {
+        return filmeParticipacao;
+    }
+
+    public void setFilmeParticipacao(String filmeParticipacao) {
+        this.filmeParticipacao = filmeParticipacao;
     }
 
     @Override
@@ -9,7 +21,7 @@ public class Ator extends Pessoa {
         System.out.println("Ator: " + getNome());
         System.out.println("Idade: " + getIdade());
         System.out.println("Nacionalidade: " + getNacionalidade());
-        System.out.println("Participou do filme: " + getFilmeParticipacao());
+        System.out.println("Participou do filme: " + filmeParticipacao);
     }
 
     @Override
@@ -29,10 +41,6 @@ public class Ator extends Pessoa {
     @Override
     public String toString() {
         return "Ator: " + getNome() + "\nFilme: " + getFilmeParticipacao();
-    }
-
-    public String getFilmeParticipacao() {
-        return super.getFilmeParticipacao(); // Assumindo que está em Pessoa
     }
 }
  

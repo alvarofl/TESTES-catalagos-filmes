@@ -1,0 +1,7 @@
+atributos
+data nascimento opcional 
+nacionalidade 
+gênero 
+
+nome diretor
+filmeparticipao

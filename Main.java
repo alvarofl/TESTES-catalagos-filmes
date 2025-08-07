@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Main {
 
@@ -21,7 +23,7 @@ public class Main {
             System.out.println("0. Sair");
             System.out.print("Opção: ");
             opcao = sc.nextInt();
-            sc.nextLine(); // limpa o buffer
+            sc.nextLine(); // limpar buffer
 
             switch (opcao) {
                 case 1 -> cadastrarAtor(sc);
@@ -39,39 +41,55 @@ public class Main {
     }
 
     private static void cadastrarAtor(Scanner sc) {
-        System.out.print("Nome do Ator: ");
-        String nome = sc.nextLine();
-        System.out.print("Idade: ");
-        int idade = sc.nextInt();
-        sc.nextLine();
-        System.out.print("Nacionalidade: ");
-        String nacionalidade = sc.nextLine();
-        System.out.print("Filme que participou: ");
-        String filmeParticipacao = sc.nextLine();
+        try {
+            System.out.print("Nome do Ator: ");
+            String nome = sc.nextLine();
 
-        Ator ator = new Ator(nome, idade, nacionalidade, filmeParticipacao);
-        atores.add(ator);
-        System.out.println("✅ Ator cadastrado!");
+            System.out.print("Data de nascimento (dd/MM/yyyy): ");
+            String dataNascimentoStr = sc.nextLine();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date idade = sdf.parse(dataNascimentoStr);
+
+            System.out.print("Nacionalidade: ");
+            String nacionalidade = sc.nextLine();
+
+            System.out.print("Filme que participou: ");
+            String filmeParticipacao = sc.nextLine();
+
+            Ator ator = new Ator(nome, idade, nacionalidade, filmeParticipacao);
+            atores.add(ator);
+            System.out.println("✅ Ator cadastrado!");
+
+        } catch (Exception e) {
+            System.out.println("❌ Erro ao cadastrar ator: " + e.getMessage());
+        }
     }
 
     private static void cadastrarDiretor(Scanner sc) {
-        System.out.print("Nome do Diretor: ");
-        String nome = sc.nextLine();
-        System.out.print("Idade: ");
-        int idade = sc.nextInt();
-        sc.nextLine();
-        System.out.print("Nacionalidade: ");
-        String nacionalidade = sc.nextLine();
-System.out.print("Filme que dirigiu: ");
-String filmeParticipacao = sc.nextLine(); 
-        Diretor diretor = new Diretor(nome, idade, nacionalidade, filmeParticipacao);
-        diretores.add(diretor);
-        System.out.println("✅ Diretor cadastrado!");
+        try {
+            System.out.print("Nome do Diretor: ");
+            String nome = sc.nextLine();
+
+            System.out.print("Data de nascimento (dd/MM/yyyy): ");
+            String dataNascimentoStr = sc.nextLine();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date idade = sdf.parse(dataNascimentoStr);
+
+            System.out.print("Nacionalidade: ");
+            String nacionalidade = sc.nextLine();
+
+            Diretor diretor = new Diretor(nome, idade, nacionalidade);
+            diretores.add(diretor);
+            System.out.println("✅ Diretor cadastrado!");
+        } catch (Exception e) {
+            System.out.println("❌ Erro ao cadastrar diretor: " + e.getMessage());
+        }
     }
 
     private static void cadastrarFilme(Scanner sc) {
         System.out.print("Nome do Filme: ");
         String nomeFilme = sc.nextLine();
+
         System.out.print("Descrição do Filme: ");
         String descricao = sc.nextLine();
 

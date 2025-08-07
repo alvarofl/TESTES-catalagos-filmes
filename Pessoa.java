@@ -1,44 +1,43 @@
+import java.util.Date;
+
+//criando uma classe abstrata para ser implementada pela sub classes 
 
 public abstract class Pessoa {
             // Atributos comuns a atores e diretores
             //coloquei como protegido para as sub classes, terem acessos, e o modo protegido fica no nível intermediário do público e privado
-            
-    protected String nome;
+
+                protected boolean genero;
+    protected Date idade;    
     protected String nacionalidade;
-    protected int idade;
-        protected String filmeParticipacao;
+
+        
     // definindo o construtor quando a classe abstrata é criada
-    public Pessoa (String nome, int idade, String nacionalidade, String filmeParticipacao) {
-        this.nome = nome;
+    public Pessoa (boolean genero, Date idade, String nacionalidade) {
+        this.genero = genero;
         this.idade = idade;
         this.nacionalidade = nacionalidade;   
-                this.filmeParticipacao = filmeParticipacao;
+                
     }
     //criando os métodos que vam ler, e modificar os valores internos get e set 
-        public String getNome () {
-return nome;
+                public boolean isMasculino() {
+
+return genero;
         }
-        public int getIdade () {
+        public Date getIdade () {
                 return idade;
         }
         public String getNacionalidade () {
                 return nacionalidade;
         }
-public String getFilmeParticipacao() {
-    return filmeParticipacao;
-}
 
-        public void setNome (String nome) {
-                        this.nome = nome;
+        public void setGenero (boolean genero) {
+                        this.genero = genero;
         }
         public void setNacionalidade (String nacionalidade) {
          this.nacionalidade = nacionalidade;
         }
-        public void setFilmeParticipacao (String filmeParticipacao) {
-                this.filmeParticipacao = filmeParticipacao;
-
-        }
-        public void setIdade (int idade) {
+        
+        public void setIdade (Date idade) {
                 this.idade = idade;
 
         }
@@ -47,4 +46,4 @@ public String getFilmeParticipacao() {
 //definindo um método abstrato, siguinifica que toda vez que for declarar uma nova classe deverá ser declarado também, a classe abstrata exibirInfo
             public abstract void exibirInfo();
 
-}
+}       
