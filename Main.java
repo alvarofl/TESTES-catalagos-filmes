@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class Main {
 
@@ -48,15 +50,21 @@ public class Main {
             System.out.print("Data de nascimento (dd/MM/yyyy): ");
             String dataNascimentoStr = sc.nextLine();
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date idade = sdf.parse(dataNascimentoStr);
+            Date dataDate = sdf.parse(dataNascimentoStr);
+            LocalDate idade = dataDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            System.out.print("Nacionalidade: ");
-            String nacionalidade = sc.nextLine();
+            System.out.print("Nacionalidade (Argentina, Brasil, Canada, CoreiaDoSul, EstadosUnidos, Inglaterra): ");
+            String nacionalidadeStr = sc.nextLine();
+            Pessoa.Nacionalidade nacionalidade = Pessoa.Nacionalidade.valueOf(nacionalidadeStr.trim());
+
+            System.out.print("Gênero (true para masculino, false para feminino): ");
+            boolean genero = sc.nextBoolean();
+            sc.nextLine(); // limpar buffer
 
             System.out.print("Filme que participou: ");
             String filmeParticipacao = sc.nextLine();
 
-            Ator ator = new Ator(nome, idade, nacionalidade, filmeParticipacao);
+            Ator ator = new Ator(nome, genero, idade, nacionalidade, filmeParticipacao);
             atores.add(ator);
             System.out.println("✅ Ator cadastrado!");
 
@@ -73,12 +81,18 @@ public class Main {
             System.out.print("Data de nascimento (dd/MM/yyyy): ");
             String dataNascimentoStr = sc.nextLine();
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date idade = sdf.parse(dataNascimentoStr);
+            Date dataDate = sdf.parse(dataNascimentoStr);
+            LocalDate idade = dataDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            System.out.print("Nacionalidade: ");
-            String nacionalidade = sc.nextLine();
+            System.out.print("Nacionalidade (Argentina, Brasil, Canada, CoreiaDoSul, EstadosUnidos, Inglaterra): ");
+            String nacionalidadeStr = sc.nextLine();
+            Pessoa.Nacionalidade nacionalidade = Pessoa.Nacionalidade.valueOf(nacionalidadeStr.trim());
 
-            Diretor diretor = new Diretor(nome, idade, nacionalidade);
+            System.out.print("Gênero (true para masculino, false para feminino): ");
+            boolean genero = sc.nextBoolean();
+            sc.nextLine(); // limpar buffer
+Diretor diretor = new Diretor(nome, idade, nacionalidade, genero);
+            
             diretores.add(diretor);
             System.out.println("✅ Diretor cadastrado!");
         } catch (Exception e) {
@@ -100,7 +114,7 @@ public class Main {
 
         System.out.println("Selecione um Diretor:");
         for (int i = 0; i < diretores.size(); i++) {
-            System.out.println(i + " - " + diretores.get(i).getNome());
+            System.out.println(i + " - " + diretores.get(i).getNomeDiretor());
         }
 
         int idx = sc.nextInt();
@@ -170,8 +184,8 @@ public class Main {
                 String nome = sc.nextLine();
                 boolean encontrado = false;
                 for (Diretor d : diretores) {
-                    if (d.getNome().trim().equalsIgnoreCase(nome.trim())) {
-                        System.out.println("Diretor: " + d.getNome());
+                    if (d.getNomeDiretor().trim().equalsIgnoreCase(nome.trim())) {
+                        System.out.println("Diretor: " + d.getNomeDiretor());
                         System.out.println("Filmes dirigidos: " + d.getFilmesDirigidos());
                         encontrado = true;
                     }
@@ -182,4 +196,3 @@ public class Main {
         }
     }
 }
- 

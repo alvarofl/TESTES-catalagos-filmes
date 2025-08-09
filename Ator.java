@@ -1,10 +1,11 @@
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class Ator extends Pessoa {
     private String filmeParticipacao;
 
-    public Ator(String nome, Date idade, String nacionalidade, String filmeParticipacao) {
-        super(nome, idade, nacionalidade);
+    public Ator(String nome, boolean genero, LocalDate idade, Nacionalidade nacionalidade, String filmeParticipacao) {
+    super(nome, genero, idade, nacionalidade);
         this.filmeParticipacao = filmeParticipacao;
     }
 

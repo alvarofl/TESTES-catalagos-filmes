@@ -1,13 +1,14 @@
 import java.util.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Diretor extends Pessoa {
     private ArrayList<String> filmesDirigidos;
         private String nomeDiretor;
 
-    public Diretor(String nomediretor, Date idade, String nacionalidade, boolean genero) {
+    public Diretor(String nomediretor, LocalDate idade, Nacionalidade nacionalidade, boolean genero) {
         // chama o construtor da superclasse Pessoa
-        super(genero, idade, nacionalidade);
+        super(nomediretor, genero, idade, nacionalidade);
         this.filmesDirigidos = new ArrayList<>() ;
             this.nomeDiretor = nomediretor;
     }
